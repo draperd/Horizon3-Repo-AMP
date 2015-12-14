@@ -2,9 +2,9 @@
   <shortname>Create a Content Application Type</shortname>
   <description>Creates a new Content Application Type</description>
   <family>Horizon3</family>
-  <url>/remote-share/content-app-type</url>
+  <url>/horizon3/app-type</url>
   <format default="json"></format>
   <authentication>user</authentication>
-  <transaction allow="readwrite">required</transaction>
+  <transaction>required</transaction>  
   <lifecycle>internal</lifecycle>
-</webscript>
+</webscript> 

@@ -35,13 +35,9 @@ function main() {
       }
       else
       {
-         // Check that the requested root page exists...
-         alfQuery = 'TYPE:"{http://www.alfresco.org/model/surf/1.0}amdpage"' +
-                 ' AND PATH:"/app:company_home/app:dictionary//*"' +
-                 ' AND @cm\:name:"' + rootPage + '"';
-         queryDef.query = alfQuery;
-         var existingPages = search.query(queryDef);
-         if (existingPages.length == 0)
+         // Check the the rootPage exists...
+         var rootPageNode = search.findNode(rootPage);
+         if (!rootPageNode)
          {
             status.code = 500;
             model.errorMessage = "appType.create.error.rootPageDoesNotExist";
@@ -52,7 +48,7 @@ function main() {
       // Check to see if the page name is already in use...
       alfQuery = 'TYPE:"{http://www.alfresco.org/model/surf/1.0}applicationType"' +
                  ' AND PATH:"/app:company_home/app:dictionary//*"' +
-                 ' AND @cm\:name:"' + name + '"';
+                 ' AND @cm:name:"' + name + '"';
       queryDef.query = alfQuery;
       var existingAppTypes = search.query(queryDef);
       if (existingAppTypes.length == 1)
@@ -64,7 +60,9 @@ function main() {
       }
 
       // Create the application type...
-      var doc = shareResources.createNode(name, "surf:applicationType");
+      var properties = new Array();
+      properties["surf:rootRage"] = rootPage;
+      var doc = shareResources.createNode(name, "surf:applicationType", properties);
       if (!doc)
       {
          status.code = 500;
@@ -73,7 +71,6 @@ function main() {
       }
       else
       {
-         doc.properties["surf:rootRage"] = rootPage;
          model.nodeRef = doc.nodeRef.toString();
          return true;
       }

@@ -2,7 +2,7 @@
   <shortname>Application Types</shortname>
   <description>Returns available Application Types</description>
   <family>Horizon3</family>
-  <url>/remote-share/content-app-types</url>
+  <url>/horizon3/app-types</url>
   <format default="json"></format>
   <authentication>user</authentication>
   <transaction allow="readonly">required</transaction>

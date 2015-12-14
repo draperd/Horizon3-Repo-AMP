@@ -2,9 +2,9 @@
   <shortname>Application Instances</shortname>
   <description>Returns available Application Instances</description>
   <family>Horizon3</family>
-  <url>/remote-share/content-app-instances</url>
+  <url>/horizon3/app-instances</url>
   <format default="json"></format>
   <authentication>user</authentication>
   <transaction allow="readonly">required</transaction>
-  <lifecycle>internal</lifecycle>
+  <lifecycle>internal</lifecycle> 
 </webscript>

@@ -1,7 +1,7 @@
 function main() {
    
    // This query should find the Share Resources folder 
-   var alfQuery = 'PATH:"/app:company_home/cm:ContentApps"';
+   var alfQuery = 'PATH:"/app:company_home/cm:Applications"';
       
    var queryDef = {
       query: alfQuery,
@@ -18,8 +18,8 @@ function main() {
       
       // Get the page name and JSON definition from the request parameters...
       var valid = true;
-      var name = args.name;
-      if (name == null || name == "")
+      var name = json.get("name");
+      if (!name)
       {
          status.code = 500;
          model.errorMessage = "appType.create.error.noNameProvided";
@@ -29,7 +29,7 @@ function main() {
       // Check to see if the page name is already in use...
       alfQuery = 'TYPE:"{http://www.alfresco.org/model/surf/1.0}applicationInstance"' +
                  ' AND PATH:"/app:company_home/cm:ContentApps//*"' +
-                 ' AND @cm\:name:"' + name + '"';
+                 ' AND @cm:name:"' + name + '"';
       queryDef.query = alfQuery;
       var existingAppTypes = search.query(queryDef);
       if (existingAppTypes.length == 1)
@@ -41,8 +41,8 @@ function main() {
       }
 
       var targetAppType = null;
-      var applicationType = args.applicationType;
-      if (applicationType == null || applicationType == "")
+      var applicationType = json.get("applicationType");
+      if (!applicationType)
       {
          status.code = 500;
          model.errorMessage = "appType.create.error.noAppTypeProvided";
@@ -51,12 +51,8 @@ function main() {
       else
       {
          // Check that the requested application type exists...
-         alfQuery = 'TYPE:"{http://www.alfresco.org/model/surf/1.0}applicationType"' +
-                 ' AND PATH:"/app:company_home/app:dictionary//*"' +
-                 ' AND @cm\:name:"' + applicationType + '"';
-         queryDef.query = alfQuery;
-         var existingAppTypes = search.query(queryDef);
-         if (existingAppTypes.length == 0)
+         var appTypeNode = search.findNode(applicationType);
+         if (!appTypeNode)
          {
             status.code = 500;
             model.errorMessage = "appType.create.error.appTypeDoesNotExist";
@@ -64,23 +60,21 @@ function main() {
          }
          else
          {
-            targetAppType = existingAppTypes[0];
+            // Get the page name and it's content...
+            var doc = shareResources.createNode(name, "surf:applicationInstance");
+            if (!doc)
+            {
+               status.code = 500;
+               model.errorMessage = "appType.create.error.couldNotCreate";
+               return false;
+            }
+            else
+            {
+               doc.createAssociation(appTypeNode, "surf:applicationType");
+               model.nodeRef = doc.nodeRef.toString();
+               return true;
+            }
          }
-      }
-      
-      // Get the page name and it's content...
-      var doc = shareResources.createNode(name, "surf:applicationInstance");
-      if (doc == null)
-      {
-         status.code = 500;
-         model.errorMessage = "appType.create.error.couldNotCreate";
-         return false;
-      }
-      else
-      {
-         doc.createAssociation(targetAppType, "surf:applicationType");
-         model.nodeRef = doc.nodeRef.toString();
-         return true;
       }
    }
    else

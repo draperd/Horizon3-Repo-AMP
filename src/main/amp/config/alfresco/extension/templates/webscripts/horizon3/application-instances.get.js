@@ -1,11 +1,5 @@
-
 var alfQuery = 'TYPE:"{http://www.alfresco.org/model/surf/1.0}applicationInstance"' +
-                  ' AND PATH:"/app:company_home/cm:ContentApps//*"';
-
-// if (url.templateArgs.pagename != null)
-// {
-//    alfQuery = alfQuery + ' AND @cm\:name:"' + url.templateArgs.pagename + '"';
-// }
+                  ' AND PATH:"/app:company_home/cm:Applications//*"';
 
 var queryDef = {
    query: alfQuery,

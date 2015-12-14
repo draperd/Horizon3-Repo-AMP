@@ -2,7 +2,7 @@
   <shortname>Create a Content Application Instance</shortname>
   <description>Creates a new Content Application Instance</description>
   <family>Horizon3</family>
-  <url>/remote-share/content-app-instance</url>
+  <url>/horizon3/app-instance</url>
   <format default="json"></format>
   <authentication>user</authentication>
   <transaction allow="readwrite">required</transaction>
