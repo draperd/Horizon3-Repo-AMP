@@ -3,7 +3,11 @@
 {
    "nodeRef": "${item.nodeRef}",
    "name": "${item.name!''}",
-   "content": "${item.content!''}"
+   "content": "${item.content!''}",
+   "applicationType": {
+      "nodeRef": "${item.applicationTypeNodeRef!''}",
+      "name": "${item.applicationTypeName!''}"
+   }
 }
 </#escape>
 </#macro>

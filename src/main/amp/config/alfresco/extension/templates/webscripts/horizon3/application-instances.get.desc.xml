@@ -2,7 +2,7 @@
   <shortname>Application Instances</shortname>
   <description>Returns available Application Instances</description>
   <family>Horizon3</family>
-  <url>/horizon3/app-instances</url>
+  <url>/horizon3/app-instances</url> 
   <format default="json"></format>
   <authentication>user</authentication>
   <transaction allow="readonly">required</transaction>

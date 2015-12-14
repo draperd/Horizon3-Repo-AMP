@@ -1,0 +1,10 @@
+<webscript>
+  <shortname>Application Instance</shortname>
+  <description>Retrieves the details of an application instance</description>
+  <family>Horizon3</family>
+  <url>/horizon3/app-instance/name/{appName}</url> 
+  <format default="json"></format>
+  <authentication>user</authentication>
+  <transaction allow="readwrite">required</transaction>
+  <lifecycle>internal</lifecycle>
+</webscript>

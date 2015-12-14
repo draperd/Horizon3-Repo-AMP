@@ -17,13 +17,20 @@ for (var i = 0, j = nodes.length; i < j; i++)
 {
    // Create core object
    node = nodes[i];
-   item =
-   {
+   item = {
       nodeRef: node.nodeRef.toString(),
       name: node.name
    };
+
+   // Get the application type of the application...
+   var type = node.associations["surf:applicationType"];
+   if (type && type.length)
+   {
+      item.applicationTypeNodeRef = type[0].nodeRef.toString();
+      item.applicationTypeName = type[0].name;
+   }
+
    pages.push(item);
 }
-
 
 model.data = pages;
