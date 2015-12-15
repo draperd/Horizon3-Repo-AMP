@@ -1,0 +1,10 @@
+<webscript>
+  <shortname>Delete Application Type</shortname>
+  <description>Deletes an application type</description>
+  <family>Horizon3</family>
+  <url>/horizon3/app-type/name/{appName}</url> 
+  <format default="json"></format>
+  <authentication>user</authentication>
+  <transaction allow="readwrite">required</transaction>
+  <lifecycle>internal</lifecycle>
+</webscript>
