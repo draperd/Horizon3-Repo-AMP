@@ -1,0 +1,11 @@
+<webscript>
+  <shortname>Remote Pages</shortname>
+  <description>Returns available page definitions</description>
+  <family>Horizon3</family>
+  <url>/horizon3/pages</url>
+  <url>/horizon3/pages/name/{pagename}</url>
+  <format default="json"></format>
+  <authentication>user</authentication>
+  <transaction allow="readonly">required</transaction>
+  <lifecycle>internal</lifecycle>
+</webscript>
