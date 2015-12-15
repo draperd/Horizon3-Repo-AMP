@@ -1,0 +1,10 @@
+<webscript>
+  <shortname>Delete Page</shortname>
+  <description>Deletes a page</description>
+  <family>Horizon3</family>
+  <url>/horizon3/page/name/{pageName}</url> 
+  <format default="json"></format>
+  <authentication>user</authentication>
+  <transaction allow="readwrite">required</transaction>
+  <lifecycle>internal</lifecycle>
+</webscript> 
