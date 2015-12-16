@@ -60,8 +60,19 @@ function main() {
          }
          else
          {
+            var properties = new Array();
+            var restrict = json.get("restrict");
+            if (restrict.booleanValue() === true)
+            {
+               properties["hzn:groupVisibility"] = json.get("groups");
+            }
+            else
+            {
+               properties["hzn:groupVisibility"] = "";
+            }
+            
             // Get the page name and it's content...
-            var doc = shareResources.createNode(name, "hzn:applicationInstance");
+            var doc = shareResources.createNode(name, "hzn:applicationInstance", properties);
             if (!doc)
             {
                status.code = 500;
@@ -70,6 +81,8 @@ function main() {
             }
             else
             {
+               var groups = json.get("groups");
+
                doc.createAssociation(appTypeNode, "hzn:applicationType");
                model.nodeRef = doc.nodeRef.toString();
                return true;
