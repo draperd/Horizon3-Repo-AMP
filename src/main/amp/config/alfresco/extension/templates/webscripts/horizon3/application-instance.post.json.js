@@ -27,7 +27,7 @@ function main() {
       }
 
       // Check to see if the page name is already in use...
-      alfQuery = 'TYPE:"{http://www.alfresco.org/model/surf/1.0}applicationInstance"' +
+      alfQuery = 'TYPE:"{http://www.alfresco.org/model/horizon3/1.0}applicationInstance"' +
                  ' AND PATH:"/app:company_home/cm:ContentApps//*"' +
                  ' AND @cm:name:"' + name + '"';
       queryDef.query = alfQuery;
@@ -61,7 +61,7 @@ function main() {
          else
          {
             // Get the page name and it's content...
-            var doc = shareResources.createNode(name, "surf:applicationInstance");
+            var doc = shareResources.createNode(name, "hzn:applicationInstance");
             if (!doc)
             {
                status.code = 500;
@@ -70,7 +70,7 @@ function main() {
             }
             else
             {
-               doc.createAssociation(appTypeNode, "surf:applicationType");
+               doc.createAssociation(appTypeNode, "hzn:applicationType");
                model.nodeRef = doc.nodeRef.toString();
                return true;
             }

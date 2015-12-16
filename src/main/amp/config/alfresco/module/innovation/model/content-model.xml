@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<model name="myc:contentModel" xmlns="http://www.alfresco.org/model/dictionary/1.0">
+<model name="hzn:contentModel" xmlns="http://www.alfresco.org/model/dictionary/1.0">
 
     <!-- Optional meta-data about the model -->
-    <description>Document Model for Repo Extension X</description>
-    <author>My Name</author>
+    <description>Horizon 3 Model</description>
+    <author>Dave Draper</author>
     <version>1.0</version>
 
     <imports>
@@ -13,15 +13,43 @@
         <import uri="http://www.alfresco.org/model/content/1.0" prefix="cm"/>
         <!-- Import Alfresco System Model Definitions -->
         <import uri="http://www.alfresco.org/model/system/1.0" prefix="sys"/>
+        <!-- Import Original Surf UI model -->
+        <import uri="http://www.alfresco.org/model/surf/1.0" prefix="surf"/>
     </imports>
 
     <!-- Custom namespace for your domain -->
     <namespaces>
-        <namespace uri="http://www.mycompany.com/model/content/1.0" prefix="myc"/>
+        <namespace uri="http://www.alfresco.org/model/horizon3/1.0" prefix="hzn"/>
     </namespaces>
 
-    <!-- ===============================================================================================================
-        Constraints, Types, and Aspects go here...
-        -->
+    <types>
+      <type name="hzn:applicationInstance">
+         <title>Horizon3 Application Instance</title>
+         <parent>cm:folder</parent>
+         <properties>
+            <property name="hzn:groupVisibility">
+               <type>d:text</type>
+               <mandatory>false</mandatory>
+               <multiple>false</multiple>
+               <index enabled="true">
+                  <tokenised>false</tokenised>
+               </index>
+            </property>
+         </properties>
+         <associations>
+            <association name="hzn:applicationType">
+               <source>
+                  <mandatory>false</mandatory>
+                  <many>true</many>
+               </source>
+               <target>
+                  <class>surf:applicationType</class>
+                  <mandatory>true</mandatory>
+                  <many>false</many>
+               </target>
+            </association>
+         </associations>
+      </type>
+    </types>
 
 </model>

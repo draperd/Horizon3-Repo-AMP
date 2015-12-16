@@ -3,6 +3,7 @@
 {
    "nodeRef": "${item.nodeRef}",
    "name": "${item.name!''}",
+   "groups": "${item.groups!''}",
    "content": "${item.content!''}",
    "applicationType": {
       "nodeRef": "${item.applicationTypeNodeRef!''}",

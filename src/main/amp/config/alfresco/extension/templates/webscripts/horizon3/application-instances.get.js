@@ -1,4 +1,4 @@
-var alfQuery = 'TYPE:"{http://www.alfresco.org/model/surf/1.0}applicationInstance"' +
+var alfQuery = 'TYPE:"{http://www.alfresco.org/model/horizon3/1.0}applicationInstance"' +
                   ' AND PATH:"/app:company_home/cm:Applications//*"';
 
 var queryDef = {
@@ -19,11 +19,12 @@ for (var i = 0, j = nodes.length; i < j; i++)
    node = nodes[i];
    item = {
       nodeRef: node.nodeRef.toString(),
-      name: node.name
+      name: node.name,
+      groups: node.properties["hzn:groupVisibility"]
    };
 
    // Get the application type of the application...
-   var type = node.associations["surf:applicationType"];
+   var type = node.associations["hzn:applicationType"];
    if (type && type.length)
    {
       item.applicationTypeNodeRef = type[0].nodeRef.toString();

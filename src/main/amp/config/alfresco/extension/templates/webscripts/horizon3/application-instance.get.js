@@ -1,7 +1,7 @@
 function main() {
 
    var appName = url.templateArgs.appName;
-   var alfQuery = 'TYPE:"{http://www.alfresco.org/model/surf/1.0}applicationInstance"' +
+   var alfQuery = 'TYPE:"{http://www.alfresco.org/model/horizon3/1.0}applicationInstance"' +
                  ' AND PATH:"/app:company_home//*"' +
                  ' AND @cm:name:"' + appName + '"';
    
@@ -27,7 +27,7 @@ function main() {
       model.nodeRef = appNode.nodeRef.toString();
       model.name = appName;
 
-      var applicationType = appNode.associations["surf:applicationType"];
+      var applicationType = appNode.associations["hzn:applicationType"];
       if (applicationType && applicationType.length)
       {
          var appType = applicationType[0];
