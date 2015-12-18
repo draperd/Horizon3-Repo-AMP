@@ -24,10 +24,15 @@ for (var i = 0, j = nodes.length; i < j; i++)
 {
    // Create core object
    node = nodes[i];
+
+   var rootPageNodeRef = node.properties["surf:rootRage"];
+   var rootPageNode = search.findNode(rootPageNodeRef);
+   var rootPageName = rootPageNode.name;
    item =
    {
       nodeRef: node.nodeRef.toString(),
-      name: node.name
+      name: node.name,
+      rootPage: rootPageName
    };
    if (includeContent)
    {

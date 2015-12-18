@@ -3,7 +3,8 @@
 {
    "nodeRef": "${item.nodeRef}",
    "name": "${item.name!''}",
-   "content": "${item.content!''}"
+   "rootPage": "${item.rootPage!''}",
+   "content": "${item.content!''}" 
 }
 </#escape>
 </#macro>
